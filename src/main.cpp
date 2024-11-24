@@ -80,9 +80,12 @@ setTextColor(COLOR_BLUE);
 cout << "\
 Every turn you choose the level of difficulty and answer the question. If you answer correctly, the dragon's HP goes down by the level of difficulty.\n\
 If you answer incorrectly, your HP goes down by 1. If your HP reaches 0, you lose immidiately. If the dragon's HP reaches 0, you win!\n\
-\n\
-Your initial HP is 2.\n\
-Dragon's initial HP is 15.\n\
+\n";
+setTextColor(COLOR_YELLOW);
+cout << "Your initial HP is 2.\n\
+Dragon's initial HP is 15.\n";
+setTextColor(COLOR_BLUE);
+cout << "\n\
 (yep, looks OP, but it's a game)\n\
 \n\
 Good luck and let's start the game! (enter 's' to start)\n";
