@@ -61,6 +61,29 @@ signed main()
     medium.close();
     hard.close();
 
+    vector<string> easy_answers;
+    vector<string> medium_answers;
+    vector<string> hard_answers;
+
+    ifstream easy_answers_file("D:\\DRAGON_FOLLOWS_YOU\\answers\\answers_light.txt");
+    ifstream medium_answers_file("D:\\DRAGON_FOLLOWS_YOU\\answers\\answers_medium.txt");
+    ifstream hard_answers_file("D:\\DRAGON_FOLLOWS_YOU\\answers\\answers_hard.txt");
+
+    if (!easy_answers_file.is_open() || !medium_answers_file.is_open() || !hard_answers_file.is_open()) {
+        cout << "Error: Could not open file!" << endl;
+        return 1;
+    }
+
+    while (getline(easy_answers_file, line)) {
+        easy_answers.push_back(line);
+    }
+    while (getline(medium_answers_file, line)) {
+        medium_answers.push_back(line);
+    }
+    while (getline(hard_answers_file, line)) {
+        hard_answers.push_back(line);
+    }
+
     setTextColor(COLOR_BLUE);
 
     cout << "Hello! You are trapped in dragon's cave. But the dragon loves riddles!\n\
@@ -88,12 +111,55 @@ setTextColor(COLOR_BLUE);
 cout << "\n\
 (yep, looks OP, but it's a game)\n\
 \n\
-Good luck and let's start the game! (enter 's' to start)\n";
+Good luck and let's start the game! (by the way, answer all the questions in small letters) (enter 's' to start)\n";
 
     setTextColor(COLOR_DEFAULT);
 
     string skip__;
     cin >> skip__;
+    while (skip__ != "s")
+    {
+        cin >> skip__;
+    }
+
+    int dragon_hp = 15;
+    int player_hp = 2;
+
+    while (dragon_hp > 0 && player_hp > 0)
+    {
+        int level = 0;
+        cout << "Choose the level of difficulty (just type the number):\n\n";
+        setTextColor(COLOR_GREEN);
+        cout << "1. Easy\n";
+        setTextColor(COLOR_YELLOW);
+        cout << "2. Medium\n";
+        setTextColor(COLOR_RED);
+        cout << "3. Hard\n\n";
+        cin >> level;
+        if (level == 2) 
+        {
+            int random_index = rand() % medium_questions.size();
+            string question = medium_questions[random_index];
+            cout << question << endl;
+            string answer;
+            cin >> answer;
+            if (answer == medium_answers[random_index])
+            {
+
+            }
+            else {
+
+            }
+        }
+        else if (level == 3)
+        {
+
+        }
+        else
+        {
+
+        }
+    }
 
     return 0;
 }
