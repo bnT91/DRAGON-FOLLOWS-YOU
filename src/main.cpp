@@ -21,6 +21,7 @@
 #define COLOR_GREEN 10
 #define COLOR_BLUE 9
 #define COLOR_YELLOW 14
+#define COLOR_WHITE 15
 
 using namespace std;
 
@@ -111,7 +112,7 @@ setTextColor(COLOR_BLUE);
 cout << "\n\
 (yep, looks OP, but it's a game)\n\
 \n\
-Good luck and let's start the game! (by the way, answer all the questions in small letters) (enter 's' to start)\n";
+Good luck and let's start the game! (by the way, answer all the questions in lowercase, in one word or number) (enter 's' to start)\n";
 
     setTextColor(COLOR_DEFAULT);
 
@@ -128,6 +129,7 @@ Good luck and let's start the game! (by the way, answer all the questions in sma
     while (dragon_hp > 0 && player_hp > 0)
     {
         int level = 0;
+        setTextColor(COLOR_WHITE);
         cout << "Choose the level of difficulty (just type the number):\n\n";
         setTextColor(COLOR_GREEN);
         cout << "1. Easy\n";
@@ -135,29 +137,99 @@ Good luck and let's start the game! (by the way, answer all the questions in sma
         cout << "2. Medium\n";
         setTextColor(COLOR_RED);
         cout << "3. Hard\n\n";
+        setTextColor(COLOR_DEFAULT);
         cin >> level;
         if (level == 2) 
         {
+            if (medium_questions.size() == 0)
+            {
+                cout << "No more questions left! Please choose another difficulty level." << endl;
+            }
             int random_index = rand() % medium_questions.size();
             string question = medium_questions[random_index];
+            setTextColor(COLOR_WHITE);
             cout << question << endl;
             string answer;
             cin >> answer;
             if (answer == medium_answers[random_index])
             {
-
+                dragon_hp -= 2;
+                setTextColor(COLOR_WHITE);
+                cout << "Correct! Dragon's HP: " << dragon_hp << endl;
+                setTextColor(COLOR_DEFAULT);
+                medium_questions.erase(medium_questions.begin() + random_index);
+                medium_answers.erase(medium_answers.begin() + random_index);
             }
             else {
-
+                player_hp -= 1;
+                setTextColor(COLOR_WHITE);
+                cout << "Incorrect! " << "Correct answer was: " << medium_answers[random_index] << ". Your HP: " << player_hp << endl;
+                setTextColor(COLOR_DEFAULT);
+                medium_questions.erase(medium_questions.begin() + random_index);
+                medium_answers.erase(medium_answers.begin() + random_index);
             }
         }
         else if (level == 3)
         {
-
+            if (hard_questions.size() == 0)
+            {
+                cout << "No more questions left! Please choose another difficulty level." << endl;
+            }
+            int random_index = rand() % hard_questions.size();
+            string question = hard_questions[random_index];
+            cout << question << endl;
+            string answer;
+            cin >> answer;
+            if (answer == hard_answers[random_index])
+            {
+                dragon_hp -= 3;
+                setTextColor(COLOR_WHITE);
+                cout << "Correct! Dragon's HP: " << dragon_hp << endl;
+                setTextColor(COLOR_DEFAULT);
+                hard_questions.erase(hard_questions.begin() + random_index);
+                hard_answers.erase(hard_answers.begin() + random_index);
+            }
+            else {
+                player_hp -= 1;
+                setTextColor(COLOR_WHITE);
+                cout << "Incorrect! " << "Correct answer was: " << hard_answers[random_index] << ". Your HP: " << player_hp << endl;
+                setTextColor(COLOR_DEFAULT);
+                hard_questions.erase(hard_questions.begin() + random_index);
+                hard_answers.erase(hard_answers.begin() + random_index);
+            }
+        }
+        else if (level == 1)
+        {
+            if (easy_questions.size() == 0)
+            {
+                cout << "No more questions left! Please choose another difficulty level." << endl;
+            }
+            int random_index = rand() % easy_questions.size();
+            string question = easy_questions[random_index];
+            cout << question << endl;
+            string answer;
+            cin >> answer;
+            if (answer == easy_answers[random_index])
+            {
+                dragon_hp -= 1;
+                setTextColor(COLOR_WHITE);
+                cout << "Correct! Dragon's HP: " << dragon_hp << endl;
+                setTextColor(COLOR_DEFAULT);
+                easy_questions.erase(easy_questions.begin() + random_index);
+                easy_answers.erase(easy_answers.begin() + random_index);
+            }
+            else {
+                player_hp -= 1;
+                setTextColor(COLOR_WHITE);
+                cout << "Incorrect! " << "Correct answer was: " << easy_answers[random_index] << ". Your HP: " << player_hp << endl;
+                setTextColor(COLOR_DEFAULT);
+                easy_questions.erase(easy_questions.begin() + random_index);
+                easy_answers.erase(easy_answers.begin() + random_index);
+            }
         }
         else
         {
-
+            cout << "Invalid difficulty level. Please choose a valid level (1, 2, or 3)." << endl;
         }
     }
 
