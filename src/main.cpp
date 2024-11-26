@@ -233,5 +233,19 @@ Good luck and let's start the game! (by the way, answer all the questions in low
         }
     }
 
+    if (player_hp > 0)
+    {
+        setTextColor(COLOR_YELLOW);
+        cout << "\n\n";
+        cout << "You won! Congratulations!" << endl;
+        setTextColor(COLOR_DEFAULT);
+    }
+    else
+    {
+        setTextColor(COLOR_RED);
+        cout << "\n\n";
+        cout << "You lost! Better luck next time!" << endl;
+        setTextColor(COLOR_DEFAULT);
+    }
     return 0;
 }
