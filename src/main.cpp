@@ -207,7 +207,7 @@ Good luck and let's start the game! (by the way, answer all the questions in low
                 hard_answers.erase(hard_answers.begin() + random_index);
             }
         }
-        else if (level == 1)
+        else
         {
             if (easy_questions.size() == 0)
             {
@@ -236,10 +236,6 @@ Good luck and let's start the game! (by the way, answer all the questions in low
                 easy_questions.erase(easy_questions.begin() + random_index);
                 easy_answers.erase(easy_answers.begin() + random_index);
             }
-        }
-        else
-        {
-            cout << "Invalid difficulty level. Please choose a valid level (1, 2, or 3)." << endl;
         }
         dragon_hp = max(dragon_hp, 0);
     }
