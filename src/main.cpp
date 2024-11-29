@@ -30,6 +30,13 @@ void setTextColor(int color) {
     SetConsoleTextAttribute(hConsole, color);
 }
 
+string lowercase(string s) {
+    for (int i = 0; i < s.length(); i++) {
+        s[i] = tolower(s[i]);
+    }
+    return s;
+}
+
 signed main()
 {
     SetConsoleOutputCP(CP_UTF8); 
@@ -87,8 +94,8 @@ signed main()
 
     setTextColor(COLOR_BLUE);
 
-    cout << "Hello! You are trapped in dragon's cave. But the dragon loves riddles!\n\
-So, you found the opportunity to escape. The way is to attack the dragon with riddles. There are 3 levels of difficulty:\n";
+    cout << "Hello! You are trapped in a dragon's cave. But the dragon loves riddles!\n\
+So, you found an opportunity to escape. The way is to attack the dragon with riddles. There are 3 levels of difficulty:\n";
 setTextColor(COLOR_GREEN);
 cout << "\
 \n\
@@ -144,6 +151,7 @@ Good luck and let's start the game! (by the way, answer all the questions in low
             if (medium_questions.size() == 0)
             {
                 cout << "No more questions left! Please choose another difficulty level." << endl;
+                continue;
             }
             int random_index = rand() % medium_questions.size();
             string question = medium_questions[random_index];
@@ -151,7 +159,7 @@ Good luck and let's start the game! (by the way, answer all the questions in low
             cout << question << endl;
             string answer;
             cin >> answer;
-            if (answer == medium_answers[random_index])
+            if (lowercase(answer) == medium_answers[random_index])
             {
                 dragon_hp -= 2;
                 setTextColor(COLOR_WHITE);
@@ -174,13 +182,14 @@ Good luck and let's start the game! (by the way, answer all the questions in low
             if (hard_questions.size() == 0)
             {
                 cout << "No more questions left! Please choose another difficulty level." << endl;
+                continue;
             }
             int random_index = rand() % hard_questions.size();
             string question = hard_questions[random_index];
             cout << question << endl;
             string answer;
             cin >> answer;
-            if (answer == hard_answers[random_index])
+            if (lowercase(answer) == hard_answers[random_index])
             {
                 dragon_hp -= 3;
                 setTextColor(COLOR_WHITE);
@@ -203,13 +212,14 @@ Good luck and let's start the game! (by the way, answer all the questions in low
             if (easy_questions.size() == 0)
             {
                 cout << "No more questions left! Please choose another difficulty level." << endl;
+                continue;
             }
             int random_index = rand() % easy_questions.size();
             string question = easy_questions[random_index];
             cout << question << endl;
             string answer;
             cin >> answer;
-            if (answer == easy_answers[random_index])
+            if (lowercase(answer) == easy_answers[random_index])
             {
                 dragon_hp -= 1;
                 setTextColor(COLOR_WHITE);
@@ -231,6 +241,7 @@ Good luck and let's start the game! (by the way, answer all the questions in low
         {
             cout << "Invalid difficulty level. Please choose a valid level (1, 2, or 3)." << endl;
         }
+        dragon_hp = max(dragon_hp, 0);
     }
 
     if (player_hp > 0)
